@@ -1,0 +1,2 @@
+# bugbounty
+Bugbounty Resources
