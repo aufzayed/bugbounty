@@ -30,6 +30,7 @@
     - [ ] check if the application validates the OTP or Token
 
 - XSS to Account Takeover
+    - [ ] if the application does not use auth token or you can't access the cookies because the "HttpOnly" flag, you can obtain the CSRF token and craft a request to change the user's email or password       
 
     - [ ] try to exfiltrate the cookies
 
