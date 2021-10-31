@@ -33,7 +33,7 @@
 
     - [ ] try to exfiltrate the cookies
 
-    - [ ] try to exfiltrate th Auth Token
+    - [ ] try to exfiltrate the Auth Token
 
     - [ ] if the cookie's "domain" attribute is set, search for xss in the subdomains and use it to exfiltrate the cookies
 
