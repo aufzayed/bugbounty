@@ -28,6 +28,9 @@
     - [ ] check if the password reset endpoint is leaking the token or OTP in the HTTP response
 
     - [ ] check if the application validates the OTP or Token
+    
+    - [ ] test for HTTP parameter Pollution (HPP)
+    
 
 - XSS to Account Takeover
     - [ ] if the application does not use auth token or you can't access the cookies because the "HttpOnly" flag, you can obtain the CSRF token and craft a request to change the user's email or password       
