@@ -48,9 +48,7 @@ requests:
 
 
     unsafe: true
-    redirects: false
     req-condition: true
-    threads: 10
     matchers:
       - type: dsl
         dsl:

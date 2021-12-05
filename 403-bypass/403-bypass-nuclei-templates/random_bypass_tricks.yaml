@@ -411,7 +411,6 @@ requests:
 
     unsafe: true
     req-condition: true
-    threads: 10
     matchers:
       - type: dsl
         dsl:

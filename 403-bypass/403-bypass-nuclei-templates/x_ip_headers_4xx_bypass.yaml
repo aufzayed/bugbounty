@@ -108,9 +108,7 @@ requests:
       Connection: Close
 
     unsafe: true
-    redirects: true
     req-condition: true
-    threads: 10
     matchers:
       - type: dsl
         dsl:
