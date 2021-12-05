@@ -1,10 +1,10 @@
-id: nginx-reverse-proxy-4xx-bypass
+id: nginx-reverse-proxy-403-bypass
 
 info:
-  name: nginx-reverse-proxy-4xx-bypass
+  name: nginx-reverse-proxy-403-bypass
   author: aufzayed
   severity: info
-  description: nginx reverse proxy 4xx bypass
+  description: nginx reverse proxy 403 bypass
   tags: fuzz
 
 requests:

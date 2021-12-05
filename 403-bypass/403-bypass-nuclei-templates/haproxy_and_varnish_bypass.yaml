@@ -1,10 +1,10 @@
-id: haproxy-varnish-reverse-4xx-bypass
+id: haproxy-varnish-reverse-403-bypass
 
 info:
-  name: haproxy-varnish-4xx-bypass
+  name: haproxy-varnish-403-bypass
   author: aufzayed
   severity: info
-  description: haproxy and varnish 4xx bypass
+  description: haproxy and varnish 403 bypass
   tags: fuzz
 
 requests:

@@ -1,10 +1,10 @@
-id: x-forwarded-header-4xx-bypass
+id: x-forwarded-headers-403-bypass
 
 info:
-  name: x-forwarded-header-4xx-bypass
+  name: x-forwarded-headers-403-bypass
   author: aufzayed
   severity: info
-  description: lower all Host header letters bypass
+  description: x-forwarded-headers 403 bypass
   tags: fuzz
 
 requests:

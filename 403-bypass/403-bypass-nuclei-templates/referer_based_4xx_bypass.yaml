@@ -1,10 +1,10 @@
-id: referer-header-4xx-bypass
+id: referer-header-403-bypass
 
 info:
-  name: host-header-4xx-bypass
+  name: host-header-403-bypass
   author: aufzayed
   severity: info
-  description: Referer-Based 4xx bypass
+  description: Referer-Based 403 bypass
   tags: fuzz
 
 requests:

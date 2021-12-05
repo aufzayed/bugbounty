@@ -1,10 +1,10 @@
-id: apache-reverse-proxy-4xx-bypass
+id: apache-reverse-proxy-403-bypass
 
 info:
-  name: apache-reverse-proxy-4xx-bypass
+  name: apache-reverse-proxy-403-bypass
   author: aufzayed
   severity: info
-  description: apache reverse proxy 4xx bypass
+  description: apache reverse proxy 403 bypass
   tags: fuzz
 
 requests:

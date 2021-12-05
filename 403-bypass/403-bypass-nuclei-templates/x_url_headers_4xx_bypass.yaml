@@ -1,10 +1,10 @@
-id: x-url-header-bypass
+id: x-url-headers-403-bypass
 
 info:
-  name: X-URL-Header-bypass
+  name: X-URL-Headers-403-bypass
   author: aufzayed
   severity: info
-  description: bypass 4xx codes via X-URL headers
+  description: X-URL-Headers 403 bypass
   tags: fuzz
 
 requests:

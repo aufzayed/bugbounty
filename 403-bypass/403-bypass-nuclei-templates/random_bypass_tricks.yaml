@@ -1,10 +1,10 @@
-id: random-4xx-bypass-tricks
+id: random-403-bypass-tricks
 
 info:
-  name: random-4xx-bypass-tricks
+  name: random-403-bypass-tricks
   author: aufzayed
   severity: info
-  description: random 4xx bypass tricks
+  description: random 403 bypass tricks
   tags: fuzz
 
 requests:

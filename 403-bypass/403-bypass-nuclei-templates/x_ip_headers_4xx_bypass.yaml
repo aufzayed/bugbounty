@@ -1,10 +1,10 @@
-id: host-header-4xx-bypass
+id: X-IP-headers-403-bypass
 
 info:
-  name: host-header-4xx-bypass
+  name: X-IP-headers-403-bypass
   author: aufzayed
   severity: info
-  description: Host Header Manipulation 4xx bypass
+  description: X-IP-headers 403 bypass
   tags: fuzz
 
 requests:
