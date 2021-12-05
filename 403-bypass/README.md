@@ -4,7 +4,7 @@
 
 ## FFUF
 
-- [ ] ### Path fuzzing
+- [ ] Path fuzzing
 
 ```bash
 ffuf -w 403_url_payloads.txt -u http://example.com/auth_pathFUZZ -fc 403,401,400
@@ -12,7 +12,7 @@ ffuf -w 403_url_payloads.txt -u http://example.com/auth_pathFUZZ -fc 403,401,400
 
 
 
-- [ ] ### HTTP Header Fuzzing
+- [ ] HTTP Header Fuzzing
 
 ```bash
 ffuf -w 403_bypass_header_names.txt:HEADER -w 403_bypass_header_values.txt:VALUE -u http://example.com/auth_path -H "HEADER:VALUE" -fc 403,401,400
@@ -20,7 +20,7 @@ ffuf -w 403_bypass_header_names.txt:HEADER -w 403_bypass_header_values.txt:VALUE
 
 
 
-- [ ] ### Common HTTP Ports Fuzzing
+- [ ] Common HTTP Ports Fuzzing
 
 ```bash
 ffuf -w common-http-ports.txt:PORT -u http://example.com/auth_path -H "Host: example.com:PORT" -fc 403,401,400
@@ -28,7 +28,7 @@ ffuf -w common-http-ports.txt:PORT -u http://example.com/auth_path -H "Host: exa
 
 
 
-- [ ] ### HTTP Methods Fuzzing
+- [ ] HTTP Methods Fuzzing
 
 ```bash
 ffuf -w http-methods.txt:METHOD -u http://example.com/auth_path -X "METHOD" -fc 403,401,400
@@ -36,7 +36,7 @@ ffuf -w http-methods.txt:METHOD -u http://example.com/auth_path -X "METHOD" -fc 
 
 
 
-- [ ]  ### User Agent Fuzzing
+- [ ]  User Agent Fuzzing
 
 ```bash
 ffuf -w user-agents.txt:AGENT -u http://example.com/auth_path -H "User-Agent: AGENT" -fc 403,401,400
