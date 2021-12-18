@@ -4,6 +4,7 @@
 ### cheat sheets
 - [account takeover checklist](https://github.com/aufzayed/bugbounty/blob/main/account_takeover_checklist.md)
 - [remote code execution checklist](https://github.com/aufzayed/bugbounty/blob/main/remote_code_execution_checklist.md)
+- [web applications fingerprinting checklist](https://github.com/aufzayed/bugbounty/blob/main/web_applications_fingerprinting_checklist.md)
 
 
 ### tricks
