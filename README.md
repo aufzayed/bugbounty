@@ -9,3 +9,8 @@
 
 ### tricks
 - [403 bypass methods](https://github.com/aufzayed/bugbounty/blob/main/403-bypass/README.md)
+
+
+### Vulnerabilities
+
+- [Insecure Deserialization](https://github.com/aufzayed/bugbounty/blob/main/Insecure%20Deserialization.pdf)
